@@ -1,13 +1,12 @@
 <template>
-  <span>Hello</span>
+  <span>Contact</span>
 </template>
 
 <script>
 export default {
-  name: 'Hello'
+  name: 'Contact'
 }
 </script>
 
 <style lang="less" scoped>
-
 </style>

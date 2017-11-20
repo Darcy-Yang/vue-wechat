@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
-import Index from '@/components/Index'
-import Hello from '@/components/Hello'
+import Chat from '@/views/chat/Chat'
+import Contact from '@/views/contact/Contact'
+import Find from '@/views/find/Find'
+import Me from '@/views/me/Me'
 
 Vue.use(Router)
 
@@ -10,18 +11,28 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      name: 'Chat',
+      component: Chat
     },
     {
-      path: '/index',
-      name: 'Index',
-      component: Index
+      path: '/chat',
+      name: 'Chat',
+      component: Chat
     },
     {
-      path: '/hello',
-      name: 'Hello',
-      component: Hello
+      path: '/contact',
+      name: 'Contact',
+      component: Contact
+    },
+    {
+      path: '/find',
+      name: 'Find',
+      component: Find
+    },
+    {
+      path: '/me',
+      name: 'Me',
+      component: Me
     }
   ]
 })
