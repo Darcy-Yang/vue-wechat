@@ -1,17 +1,17 @@
 <template>
   <div id="app">
      <router-view/> 
-    <vueFooter class="footer"/>
+    <Tabs class="footer"/>
   </div>
 </template>
 
 <script>
-import vueFooter from '@/components/Footer'
+import Tabs from '@/components/footer/Tabs'
 
 export default {
   name: 'app',
   components: {
-    vueFooter
+    Tabs
   }
 }
 </script>
