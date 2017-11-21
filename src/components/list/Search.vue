@@ -13,6 +13,7 @@ export default {
 <style lang="less" scoped>
 .search-main {
   display: flex;
+  margin: -8px;
   justify-content: center;
   background: #ebebeb;
   input {

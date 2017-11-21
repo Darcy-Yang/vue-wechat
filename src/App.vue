@@ -1,18 +1,12 @@
 <template>
   <div id="app">
-     <router-view/> 
-    <Tabs class="footer"/>
+    <router-view/>
   </div>
 </template>
 
 <script>
-import Tabs from '@/components/footer/Tabs'
-
 export default {
-  name: 'app',
-  components: {
-    Tabs
-  }
+  name: 'app'
 }
 </script>
 
@@ -25,8 +19,4 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 } */
-.footer {
-  position: fixed;
-  bottom: 0px;
-}
 </style>

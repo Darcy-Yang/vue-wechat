@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
 import Chat from '@/views/chat/Chat'
+import ChatWindow from '@/views/chat/ChatWindow'
+
 import Contact from '@/views/contact/Contact'
 import Find from '@/views/find/Find'
 import Me from '@/views/me/Me'
@@ -18,6 +21,11 @@ export default new Router({
       path: '/chat',
       name: 'Chat',
       component: Chat
+    },
+    {
+      path: '/chat-window',
+      name: 'chatWindow',
+      component: ChatWindow
     },
     {
       path: '/contact',
