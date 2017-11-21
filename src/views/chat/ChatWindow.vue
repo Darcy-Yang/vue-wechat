@@ -6,7 +6,10 @@
       <span class="info-icon">icon</span>
     </div>
      <div class="chat-container" v-for="item in messages">
-      <li>{{ item }}</li>
+      <li>
+        <span class="message">{{ item }}</span>
+        <div class="arrow"></div>
+      </li>
     </div> 
     <div class="bottom">
       <input type="text" v-model='val' @change="send(val)"/>
@@ -40,10 +43,6 @@ export default {
   methods: {
     send (val) {
       this.$socket.emit('test', val)
-      // this.$socket.on('message', function (data) {
-      //   console.log(data)
-      //   this.messages.push(data)
-      // })
       this.val = ''
     }
   }
@@ -55,9 +54,13 @@ export default {
   margin: -8px;
   .top-nav {
   display: flex;
+  position: fixed;
+  top: 0px;
+  width: 100%;
   padding: 4% 0px;
   justify-content: space-between;
   background: #000;
+  z-index: 999;
     a {
       margin-left: 2%;
       font-size: 16px;
@@ -75,10 +78,18 @@ export default {
     }
   }
   .chat-container {
-    margin-left: 4%;
+    width: 40%;
+    margin: -6% 0px 20% 4%;
     padding: 1% 0px;
+    word-wrap: wrap;
     li {
+      margin-top: 4%;
       list-style: none;
+    }
+    .message {
+      padding: 2%;
+      background: #1deb27;
+      border-radius: 6px;
     }
   }
   .bottom {
