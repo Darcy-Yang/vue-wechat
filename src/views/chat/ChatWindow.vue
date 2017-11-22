@@ -1,14 +1,13 @@
 <template>
   <div class="chat-window">
-    <div class="top-nav">
+     <div class="top-nav">
       <router-link to="chat">< 微信</router-link>
       <span>name</span>
       <span class="info-icon">icon</span>
-    </div>
+    </div> 
      <div class="chat-container" v-for="item in messages">
       <li>
         <span class="message">{{ item }}</span>
-        <div class="arrow"></div>
       </li>
     </div> 
     <div class="bottom">
@@ -78,16 +77,15 @@ export default {
     }
   }
   .chat-container {
-    width: 40%;
-    margin: -6% 0px 20% 4%;
-    padding: 1% 0px;
+    display: flex;
+    justify-content: flex-end;
+    margin: 20% 4%;
     word-wrap: wrap;
     li {
-      margin-top: 4%;
       list-style: none;
     }
     .message {
-      padding: 2%;
+      padding: 4px;
       background: #1deb27;
       border-radius: 6px;
     }

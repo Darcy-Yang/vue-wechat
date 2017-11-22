@@ -18,6 +18,7 @@ export default {
 
 <style lang="less" scoped>
 .find-main {
+  margin-bottom: 20%;
   .footer {
     position: fixed;
     bottom: 0px;

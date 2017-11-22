@@ -43,10 +43,11 @@ export default {
 
 <style lang="less" scoped>
 .list-main {
-  margin: 2% 20% 0px 0px;
+  margin: 1% 0% 0px 2%;
+  width: 100%;
   .menu {
     display: flex;
-    margin-left: 4%;
+    width: 100%;
     padding: 3% 0px;
     border-bottom: 0.1px solid gray;
   }

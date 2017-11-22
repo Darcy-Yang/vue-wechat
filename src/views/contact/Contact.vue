@@ -29,7 +29,7 @@ export default {
 
 <style lang="less" scoped>
 .contact-main {
-  // margin: -8px;
+  margin-bottom: 20%;
   .footer {
     position: fixed;
     bottom: 0px;

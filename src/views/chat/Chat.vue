@@ -2,7 +2,6 @@
   <div class="chat-main">
     <Search class="search"/>
     <List/>
-    <router-view></router-view>
     <Tabs class="footer"/>
   </div>
 </template>
@@ -24,7 +23,7 @@ export default {
 
 <style lang="less" scoped>
 .chat-main {
-  // margin: -8px;
+  margin-bottom: 20%;
   .footer {
     position: fixed;
     bottom: 0px;
