@@ -43,6 +43,7 @@ export default {
 
 <style lang="less" scoped>
 .list-main {
+  // 此处左margin不能过大，否则会出现页面拉伸的情况；
   margin: 1% 0% 0px 2%;
   width: 100%;
   .menu {

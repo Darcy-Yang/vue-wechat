@@ -1,22 +1,47 @@
 <template>
   <div class="search-main">
      <div class="top">
-      <div>
-      </div>
+      <div></div>  
       <div>
         <span>name</span>
       </div>
       <div class="add">
-        <span>+</span>
+        <router-link to="add-friend" v-if="showAdd">+</router-link>
       </div>
     </div> 
-    <input type="test" placeholder="搜索"/>
+    <input type="text" :placeholder="tips" v-if="showSearch" @change="test"/>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'List'
+  name: 'List',
+  props: {
+    showAdd: {
+      type: Boolean,
+      default: true
+    },
+    showSearch: {
+      type: Boolean,
+      default: true
+    },
+    tips: {
+      type: String,
+      default: '搜索'
+    },
+    search: {
+      type: Function
+    }
+  },
+  methods: {
+    test () {
+      if (typeof this.search === 'function') {
+        this.search()
+      } else {
+        console.log('done')
+      }
+    }
+  }
 }
 </script>
 
@@ -40,6 +65,10 @@ export default {
     background: #000;
     .add {
       margin: 0 4% 0 -4%;
+      a {
+        color: white;
+        text-decoration: none;
+      }
     }
   }
   input {

@@ -8,6 +8,8 @@ import Contact from '@/views/contact/Contact'
 import Find from '@/views/find/Find'
 import Me from '@/views/me/Me'
 
+import AddFriend from '@/components/add/AddFriend'
+
 Vue.use(Router)
 
 export default new Router({
@@ -41,6 +43,11 @@ export default new Router({
       path: '/me',
       name: 'Me',
       component: Me
+    },
+    {
+      path: '/add-friend',
+      name: 'AddFriend',
+      component: AddFriend
     }
   ]
 })
