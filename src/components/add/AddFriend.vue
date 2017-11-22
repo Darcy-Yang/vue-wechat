@@ -1,17 +1,17 @@
 <template>
   <div class="add-main">
-    <Search :showAdd="showAdd" :tips="tips" :search="search"/>
+    <Search :showAdd="showStuff" :showSearch="showStuff"/>
+    <input type="text" placeholder="请输入昵称" v-model='val' @change="add(val)"/>
   </div>
 </template>
 
 <script>
 import Search from '@/components/list/Search'
 
-import VueSocketio from 'vue-socket.io'
-import socketio from 'socket.io-client'
 import Vue from 'vue'
+import vueResource from 'vue-resource'
 
-Vue.use(VueSocketio, socketio('http://localhost:3000'))
+Vue.use(vueResource)
 
 export default {
   name: 'AddFriend',
@@ -20,13 +20,21 @@ export default {
   },
   data () {
     return {
-      showAdd: false,
-      tips: '请输入搜索昵称'
+      showStuff: false,
+      val: ''
     }
   },
   methods: {
-    search () {
-      console.log('search')
+    add (val) {
+      // this.$http.post('/api/user/addUser', {
+      //   name: val,
+      //   avatar: ''
+      // }, {}).then((response) => {
+      //   console.log(response)
+      // })
+      this.$socket.emit('add', val)
+      this.val = ''
+      this.$router.push('/contact')
     }
   }
 }
@@ -35,10 +43,17 @@ export default {
 <style lang="less" scoped>
 .add-main {
   display: flex;
+  margin: -8px;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #ebebeb;
+  }
   input {
     width: 86%;
-    margin-top: 20%;
+    margin: 22% 0px 4% 0px;
+    border-radius: 6px; 
+    border: none;
+    padding: 1% 0px 2% 4%;
   }
-}
 </style>

@@ -4,7 +4,7 @@
       <div class="menu" @click="chat">
         <img class="avatar" :src='avatar' alt="avatar"/>
         <div class="text-info" :style="listStyle">
-          <span class="name">name</span></br>
+          <span class="name">{{ item }}</span></br>
           <span class="content" v-if='showContent'>content</span>
         </div>
       </div>
@@ -20,7 +20,7 @@ export default {
   data () {
     return {
       avatar,
-      menus: [{}, {}, {}, {}, {}, {}, {}, {}, {}]
+      menus: [, , , , , , , , ]
     }
   },
   props: {
@@ -31,6 +31,14 @@ export default {
     showContent: {
       type: Boolean,
       default: true
+    }
+  },
+  sockets: {
+    connect () {
+      console.log('connected')
+    },
+    addUser (val) {
+      this.menus.push(val)
     }
   },
   methods: {

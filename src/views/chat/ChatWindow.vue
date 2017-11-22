@@ -17,11 +17,11 @@
 </template>
 
 <script>
-import VueSocketio from 'vue-socket.io'
-import socketio from 'socket.io-client'
-import Vue from 'vue'
+// import VueSocketio from 'vue-socket.io'
+// import socketio from 'socket.io-client'
+// import Vue from 'vue'
 
-Vue.use(VueSocketio, socketio('http://localhost:3000'))
+// Vue.use(VueSocketio, socketio('http://localhost:3000'))
 
 export default {
   name: 'chatWindow',
@@ -32,9 +32,9 @@ export default {
     }
   },
   sockets: {
-    connect () {
-      console.log('connect~')
-    },
+    // connect () {
+    //   console.log('connect~')
+    // },
     message (val) {
       this.messages.push(val)
     }

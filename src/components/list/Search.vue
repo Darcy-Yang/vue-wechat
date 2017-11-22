@@ -9,7 +9,7 @@
         <router-link to="add-friend" v-if="showAdd">+</router-link>
       </div>
     </div> 
-    <input type="text" :placeholder="tips" v-if="showSearch" @change="test"/>
+    <input type="text" :placeholder="tips" v-model="val" v-if="showSearch" @change="test(val)"/>
   </div>
 </template>
 
@@ -28,18 +28,17 @@ export default {
     tips: {
       type: String,
       default: '搜索'
-    },
-    search: {
-      type: Function
+    }
+  },
+  data () {
+    return {
+      val: ''
     }
   },
   methods: {
-    test () {
-      if (typeof this.search === 'function') {
-        this.search()
-      } else {
-        console.log('done')
-      }
+    test (val) {
+      this.$socket.emit('search', val)
+      this.val = ''
     }
   }
 }
