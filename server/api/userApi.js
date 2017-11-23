@@ -33,4 +33,17 @@ router.post('/addUser', (req, res) => {
   })
 })
 
+  // 获取所有用户接口；
+router.get('/allUser', (req, res) => {
+  var getSql = $sql.user.get
+  conn.query(getSql, function (err, result) {
+    if (err) {
+      console.log(err)
+    }
+    if (result) {
+      jsonWrite(res, result)
+    }
+  })
+})
+
 module.exports = router

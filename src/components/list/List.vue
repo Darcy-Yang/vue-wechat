@@ -2,10 +2,9 @@
   <div class="list-main">
     <div v-for="item in menus">
       <div class="menu" @click="chat">
-        <img class="avatar" :src='avatar' alt="avatar"/>
-        <div class="text-info" :style="listStyle">
-          <span class="name">{{ item }}</span></br>
-          <span class="content" v-if='showContent'>content</span>
+        <img class="avatar" :src="item.avatar" alt="avatar"/>
+        <div class="text-info">
+          <span class="name">{{ item.name }}</span>
         </div>
       </div>
     </div>
@@ -13,33 +12,30 @@
 </template>
 
 <script>
-const avatar = require('../../../static/avatar/avatar.jpg')
+import Vue from 'vue'
+import vueResource from 'vue-resource'
+
+Vue.use(vueResource)
+
+// const avatar = require('../../../static/avatar/avatar.jpg')
 
 export default {
   name: 'List',
   data () {
     return {
-      avatar,
-      menus: [, , , , , , , , ]
-    }
-  },
-  props: {
-    listStyle: {
-      type: String,
-      default: ''
-    },
-    showContent: {
-      type: Boolean,
-      default: true
+      // avatar,
+      menus: []
     }
   },
   sockets: {
-    connect () {
-      console.log('connected')
-    },
     addUser (val) {
       this.menus.push(val)
     }
+  },
+  created () {
+    this.$http.get('/api/user/allUser').then((response) => {
+      this.menus = response.body
+    })
   },
   methods: {
     chat () {

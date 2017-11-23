@@ -26,12 +26,10 @@ export default {
   },
   methods: {
     add (val) {
-      // this.$http.post('/api/user/addUser', {
-      //   name: val,
-      //   avatar: ''
-      // }, {}).then((response) => {
-      //   console.log(response)
-      // })
+      this.$http.post('/api/user/addUser', {
+        name: val,
+        avatar: ''
+      }, {}).then((response) => {})
       this.$socket.emit('add', val)
       this.val = ''
       this.$router.push('/contact')

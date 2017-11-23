@@ -32,9 +32,6 @@ export default {
     }
   },
   sockets: {
-    // connect () {
-    //   console.log('connect~')
-    // },
     message (val) {
       this.messages.push(val)
     }

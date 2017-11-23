@@ -1,7 +1,7 @@
 <template>
   <div class="chat-main">
     <Search class="search"/>
-    <List/>
+    <!-- <List/> -->
     <Tabs class="footer"/>
   </div>
 </template>
