@@ -1,7 +1,7 @@
 <template>
   <div class="list-main">
     <div v-for="item in menus">
-      <div class="menu" @click="chat">
+      <div class="menu" @click="open(item)">
         <img class="avatar" :src="item.avatar" alt="avatar"/>
         <div class="text-info">
           <span class="name">{{ item.name }}</span>
@@ -35,8 +35,8 @@ export default {
     })
   },
   methods: {
-    chat () {
-      this.$router.push({ name: 'chatWindow' })
+    open (item) {
+      this.$router.push({ name: 'dataCard', params: item })
     }
   }
 }

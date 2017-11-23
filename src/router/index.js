@@ -5,6 +5,8 @@ import Chat from '@/views/chat/Chat'
 import ChatWindow from '@/views/chat/ChatWindow'
 
 import Contact from '@/views/contact/Contact'
+import DataCard from '@/views/contact/DataCard'
+
 import Find from '@/views/find/Find'
 import Me from '@/views/me/Me'
 
@@ -48,6 +50,11 @@ export default new Router({
       path: '/add-friend',
       name: 'AddFriend',
       component: AddFriend
+    },
+    {
+      path: '/data-card',
+      name: 'dataCard',
+      component: DataCard
     }
   ]
 })

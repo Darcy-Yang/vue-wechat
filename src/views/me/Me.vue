@@ -49,7 +49,7 @@ export default {
 <style lang="less" scoped>
 .me-main {
   margin: -8px;
-  margin-bottom: 18%;
+  margin-bottom: 17%;
   background: #ebebeb;
   .personal-info {
     display: flex;
@@ -67,7 +67,7 @@ export default {
       padding: 2% 0px;
       flex-direction: column;
       .name {
-        font-size: 24px;
+        font-size: 22px;
       }
       .num {
         margin-top: -6%;
@@ -95,7 +95,7 @@ export default {
       }
   }
   .seeting {
-    margin: 6% 0px 5% 0px;
+    margin: 6% 0px 6% 0px;
     padding: 4%;
     background: white;
   }
