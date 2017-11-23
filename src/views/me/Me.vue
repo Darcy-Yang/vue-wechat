@@ -17,8 +17,7 @@
     <div class="seeting">
       <span>设置</span>
     </div>
-    <div class="blank">
-    </div>
+     <div class="blank"></div>
     <Tabs class="footer"/>
   </div>
 </template>
@@ -50,12 +49,12 @@ export default {
 <style lang="less" scoped>
 .me-main {
   margin: -8px;
-  margin-bottom: 20%;
+  margin-bottom: 18%;
   background: #ebebeb;
   .personal-info {
     display: flex;
     margin-top: 22%;
-    padding: 4% 2%;
+    padding: 4% 3%;
     background: white;
     img {
       width: 80px;
@@ -65,17 +64,19 @@ export default {
     .account {
       display: flex;
       margin-left: 4%;
+      padding: 2% 0px;
       flex-direction: column;
       .name {
         font-size: 24px;
       }
       .num {
+        margin-top: -6%;
         font-size: 18px;
       }
     }
   }
   .wallet {
-    margin: 6% 0px 5% 0px;
+    margin: 6% 0px 6% 0px;
     padding: 4%;
     background: white;
   }
@@ -94,12 +95,12 @@ export default {
       }
   }
   .seeting {
-    margin: 6% 0px 4% 0px;
+    margin: 6% 0px 5% 0px;
     padding: 4%;
     background: white;
   }
   .blank {
-    padding: 6%;
+    padding: 2% 0px 2% 0px;
   }
   .footer {
     margin-left: 0%;
