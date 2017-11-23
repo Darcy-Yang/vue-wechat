@@ -2,7 +2,7 @@
   <div class="chat-window">
      <div class="top-nav">
       <router-link to="chat">< 微信</router-link>
-      <span>name</span>
+      <span>{{ info.name }}</span>
       <span class="info-icon">icon</span>
     </div> 
      <div class="chat-container" v-for="item in messages">
@@ -17,24 +17,22 @@
 </template>
 
 <script>
-// import VueSocketio from 'vue-socket.io'
-// import socketio from 'socket.io-client'
-// import Vue from 'vue'
-
-// Vue.use(VueSocketio, socketio('http://localhost:3000'))
-
 export default {
   name: 'chatWindow',
   data () {
     return {
       val: '',
-      messages: []
+      messages: [],
+      info: []
     }
   },
   sockets: {
     message (val) {
       this.messages.push(val)
     }
+  },
+  created () {
+    this.info = this.$route.params
   },
   methods: {
     send (val) {
@@ -58,15 +56,16 @@ export default {
   background: #000;
   z-index: 999;
     a {
-      margin-left: 2%;
+      margin: 0.5% 0px 0px 2%;
       font-size: 16px;
       font-weight: bold;
       color: white;
       text-decoration: none;
     }
     span {
+      margin-right: 3%;
       color: white;
-      font-size: 16px;
+      font-size: 18px;
       font-weight: bold;
     }
     .info-icon {

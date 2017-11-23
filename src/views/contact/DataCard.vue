@@ -10,7 +10,7 @@
       <img :src="info.avatar" alt="avatar"/>
       <div class="account">
         <span class="name">{{ info.name }}</span>
-        <span class="num">微信号:xxxxx</span>
+        <span class="num">微信号: xxxxx</span>
       </div>
     </div>
     <div class="group-one">
@@ -39,7 +39,7 @@
       </li>
     </div>
     <div class="chat">
-      <button>发消息</button>
+      <button @click="chat">发消息</button>
     </div>
   </div>
 </template>
@@ -54,6 +54,11 @@ export default {
   },
   created () {
     this.info = this.$route.params
+  },
+  methods: {
+    chat () {
+      this.$router.push({ name: 'chatWindow', params: this.info })
+    }
   }
 }
 </script>
