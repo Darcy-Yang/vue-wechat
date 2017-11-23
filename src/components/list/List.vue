@@ -17,13 +17,10 @@ import vueResource from 'vue-resource'
 
 Vue.use(vueResource)
 
-// const avatar = require('../../../static/avatar/avatar.jpg')
-
 export default {
   name: 'List',
   data () {
     return {
-      // avatar,
       menus: []
     }
   },
