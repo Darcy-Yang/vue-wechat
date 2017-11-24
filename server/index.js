@@ -7,6 +7,7 @@ const bodyParser = require('body-parser')
 
 io.on('connection', function (socket) {
   console.log('a user connected!')
+  io.sockets.emit('send', 'hi~')
   socket.on('test', function (data) {
     socket.emit('message', data)
   })

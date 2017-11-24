@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+import Login from '@/views/login/Login'
+
 import Chat from '@/views/chat/Chat'
 import ChatWindow from '@/views/chat/ChatWindow'
 
@@ -18,8 +20,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Chat',
-      component: Chat
+      name: 'Login',
+      component: Login
     },
     {
       path: '/chat',

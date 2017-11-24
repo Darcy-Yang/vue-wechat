@@ -17,6 +17,11 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import vueResource from 'vue-resource'
+
+Vue.use(vueResource)
+
 export default {
   name: 'chatWindow',
   data () {
@@ -29,6 +34,10 @@ export default {
   sockets: {
     message (val) {
       this.messages.push(val)
+    },
+    send (val) {
+      this.messages.push(val)
+      console.log(val)
     }
   },
   created () {
@@ -38,6 +47,10 @@ export default {
     send (val) {
       this.$socket.emit('test', val)
       this.val = ''
+      // this.$http.post('/api/user/addMessage', {
+      //   message: val,
+      //   name: this.info.name
+      // }, {}).then((response) => {})
     }
   }
 }

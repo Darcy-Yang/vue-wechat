@@ -1,6 +1,6 @@
 var models = require('../db')
 var express = require('express')
-// var multer = require('multer')
+var multer = require('multer')
 var router = express.Router()
 var mysql = require('mysql')
 var $sql = require('../sql')
@@ -42,6 +42,60 @@ router.get('/allUser', (req, res) => {
     }
     if (result) {
       jsonWrite(res, result)
+    }
+  })
+})
+
+  // 添加消息接口；
+router.post('/addMessage', (req, res) => {
+  var messageSql = $sql.user.addMessage
+  var params = req.body
+  conn.query(messageSql, [params.message, params.name], function (err, result) {
+    if (err) {
+      console.log(err)
+    }
+    if (result) {
+      jsonWrite(res, result)
+    }
+  })
+})
+
+  // 上传头像；
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, '../static/avatar/')
+  },
+  filename: function (req, file, cb) {
+    var maxSql = $sql.user.max
+    conn.query(maxSql, function (err, rows, field) {
+      if (err) {
+        console.log(err)
+      }
+      if (rows) {
+        const name = field[0].name
+        var id = rows[0][name] + 1
+        cb(null, `${id}.jpg`)
+      }
+    })
+  }
+})
+
+var upload = multer({ storage: storage })
+
+  //  上传头像接口；
+router.post('/uploadAvatar', upload.single('avatar'), (req, res) => {})
+
+  // 查找id最大值接口；
+router.get('/getMaxId', (req, res) => {
+  var maxSql = $sql.user.max
+  conn.query(maxSql, function (err, rows, field) {
+    if (err) {
+      console.log(err)
+    }
+    if (rows) {
+      const name = field[0].name
+      const id = rows[0][name] + 1
+      jsonWrite(res, id)
     }
   })
 })
