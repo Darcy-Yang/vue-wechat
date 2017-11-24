@@ -19,13 +19,18 @@ export default {
   data () {
     return {
       username: '',
-      maxId: 0
+      maxId: 0,
+      menus: [],
+      repeat: false
     }
   },
   created () {
     this.$http.get('/api/user/getMaxId').then((response) => {
       this.maxId = response.body
     })
+    this.$http.get('/api/user/allUser').then((response) => {
+        this.menus = response.body
+      })
   },
   methods: {
     uploadAvatar (e) {
@@ -40,11 +45,24 @@ export default {
       xhr.send(fd)
     },
     login () {
-      this.$http.post('/api/user/addUser', {
-        name: this.username,
-        avatar: `static/avatar/${this.maxId}.jpg`
-      }, {}).then((response) => {})
-      this.$router.push('/contact')
+      for (let i = 0; i < this.menus.length; i++) {
+        if (this.username === this.menus[i].name) {
+          this.repeat = true
+          break;
+        }
+      }
+      if (!this.repeat) {
+        this.$http.post('/api/user/addUser', {
+          name: this.username,
+          avatar: `static/avatar/${this.maxId}.jpg`
+        }, {}).then((response) => {})
+        this.$router.push('/contact')
+      } else {
+        alert('该用户名已存在！')
+        this.username = ''
+        this.repeat = false
+      }
+    
     }
   }
 }
