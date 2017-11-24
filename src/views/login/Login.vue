@@ -58,9 +58,7 @@ export default {
         }, {}).then((response) => {})
         this.$router.push('/contact')
       } else {
-        alert('该用户名已存在！')
-        this.username = ''
-        this.repeat = false
+        this.$router.push('/contact')
       }
     
     }
