@@ -13,12 +13,21 @@ io.on('connection', function (socket) {
     socket.broadcast.emit('notice', `${username}上线啦`)
     socket.emit('me', username)
     allSocket[username] = socket
+    console.log(allSocket[username].id)
+    socket.emit('socketId', [allSocket[username].id, username])
   })
   socket.on('test', function (data) {
     socket.emit('message', data)
   })
   socket.on('add', function (data) {
     socket.emit('addUser', data)
+  })
+  socket.on('private_message', function (from, to, msg) {
+    var target = allSocket[to]
+    if (target) {
+      target.emit('pmsg', [from, to, msg])
+      console.log(`${from}-${to}-${msg}`)
+    }
   })
   socket.on('disconnect', function () {
     console.log('user disconnected~')

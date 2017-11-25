@@ -21,9 +21,16 @@ new Vue({
   template: '<App/>',
   components: { App },
   sockets: {
-    me (val) {
-      this.$http.post('/api/user/current-user', {
-        name: val
+    // me (val) {
+    //   this.$http.post('/api/user/current-user', {
+    //     name: val
+    //   }, {}).then((response) => {})
+    // }
+    socketId (val) {
+      // Vue.prototype.$data = val
+      this.$http.post('/api/user/update-id', {
+        socket_id: val[0],
+        name: val[1]
       }, {}).then((response) => {})
     }
   }

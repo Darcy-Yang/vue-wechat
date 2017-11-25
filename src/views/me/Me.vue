@@ -5,7 +5,7 @@
       <img :src="currentUser.avatar" alt="avatar"/>
       <div class="account">
         <span class="name">{{ currentUser.name }}</span></br>
-        <span class="num">微信号：xxxxxx</span>
+        <span class="num">微信号:{{ currentUser.socket_id }}</span>
       </div>
     </div>
     <div class="wallet">
@@ -52,12 +52,8 @@ export default {
   sockets: {
   },
   created () {
-    this.$http.get('/api/user/get-user').then((response) => {
-      if (response.body) {
-        this.$http.post('/api/user/get-current', { name: response.body[0].name },{}).then((response) => {
-          this.currentUser = response.body[0]
-        })
-      }
+    this.$http.post('/api/user/get-user', { socket_id: this.$socket.id }, {}).then((response) => {
+      this.currentUser = response.body[0]
     })
   }
 }
@@ -84,11 +80,15 @@ export default {
       padding: 2% 0px;
       flex-direction: column;
       .name {
-        font-size: 22px;
+        font-size: 24px;
       }
       .num {
         margin-top: -6%;
+        width: 200px;
         font-size: 18px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
   }

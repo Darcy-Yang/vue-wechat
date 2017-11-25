@@ -13,6 +13,11 @@
         <span class="message">{{ item }}</span>
       </li>
     </div> 
+    <div v-for="item in friend_msg">
+      <li>
+        <span>{{ item }}</span>
+      </li>
+    </div>
     <div class="bottom">
       <input type="text" v-model='val' @change="send(val)"/>
     </div>
@@ -31,6 +36,7 @@ export default {
     return {
       val: '',
       messages: [],
+      friend_msg: [],
       tip: '',
       info: [],
       userList: ''
@@ -45,15 +51,20 @@ export default {
     },
     userList (val) {
       console.log(val)
+    },
+    pmsg (val) {
+      this.friend_msg.push(val[2])
     }
   },
   created () {
     this.info = this.$route.params
+    console.log(this.$socket.id)
   },
   methods: {
     send (val) {
-      // this.$socket.emit('test', val)
-      // this.$socket.emit('private_message', val)
+      this.$socket.emit('test', val)
+      // 私聊消息；
+      this.$socket.emit('private_message', 'daniel', this.info.name, val)
       this.val = ''
     }
   }

@@ -114,10 +114,11 @@ router.post('/current-user', (req, res) => {
   })
 })
 
-  // 获取当前用户昵称接口；
-router.get('/get-user', (req, res) => {
+  // 获取当前用户接口；
+router.post('/get-user', (req, res) => {
   var getCurrentSql = $sql.user.me
-  conn.query(getCurrentSql, function (err, result) {
+  var params = req.body
+  conn.query(getCurrentSql, [params.socket_id], function (err, result) {
     if (err) {
       console.log(err)
     }
@@ -132,6 +133,20 @@ router.post('/get-current', (req, res) => {
   var sql = $sql.user.getCurrent
   var params = req.body
   conn.query(sql, [params.name], function (err, result) {
+    if (err) {
+      console.log(err)
+    }
+    if (result) {
+      jsonWrite(res, result)
+    }
+  })
+})
+
+  // 更新用户socket_id；
+router.post('/update-id', (req, res) => {
+  var sql = $sql.user.updateId
+  var params = req.body
+  conn.query(sql, [params.socket_id, params.name], function (err, result) {
     if (err) {
       console.log(err)
     }
