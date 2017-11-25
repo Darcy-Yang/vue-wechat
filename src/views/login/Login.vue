@@ -29,8 +29,8 @@ export default {
       this.maxId = response.body
     })
     this.$http.get('/api/user/allUser').then((response) => {
-        this.menus = response.body
-      })
+      this.menus = response.body
+    })
   },
   methods: {
     uploadAvatar (e) {
@@ -48,7 +48,7 @@ export default {
       for (let i = 0; i < this.menus.length; i++) {
         if (this.username === this.menus[i].name) {
           this.repeat = true
-          break;
+          break
         }
       }
       if (!this.repeat) {
@@ -56,11 +56,12 @@ export default {
           name: this.username,
           avatar: `static/avatar/${this.maxId}.jpg`
         }, {}).then((response) => {})
+        this.$socket.emit('login', this.username)
         this.$router.push('/contact')
       } else {
+        this.$socket.emit('login', this.username)
         this.$router.push('/contact')
       }
-    
     }
   }
 }

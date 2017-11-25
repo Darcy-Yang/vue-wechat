@@ -4,10 +4,13 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
-import VueSocketio from 'vue-socket.io'
+import vueSocketio from 'vue-socket.io'
 import socketio from 'socket.io-client'
 
-Vue.use(VueSocketio, socketio('http://localhost:3000'))
+import vueResource from 'vue-resource'
+
+Vue.use(vueSocketio, socketio('http://localhost:3000'))
+Vue.use(vueResource)
 
 Vue.config.productionTip = false
 
@@ -18,6 +21,10 @@ new Vue({
   template: '<App/>',
   components: { App },
   sockets: {
-    connect () {}
+    me (val) {
+      this.$http.post('/api/user/current-user', {
+        name: val
+      }, {}).then((response) => {})
+    }
   }
 })

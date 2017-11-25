@@ -5,7 +5,10 @@
       <span>{{ info.name }}</span>
       <span class="info-icon">icon</span>
     </div> 
-     <div class="chat-container" v-for="item in messages">
+    <div class="tips" v-if="tip">
+      <span>{{ tip }}</span>
+    </div>
+    <div class="chat-container" v-for="item in messages">
       <li>
         <span class="message">{{ item }}</span>
       </li>
@@ -28,15 +31,19 @@ export default {
     return {
       val: '',
       messages: [],
-      info: []
+      tip: '',
+      info: [],
+      userList: ''
     }
   },
   sockets: {
     message (val) {
       this.messages.push(val)
     },
-    send (val) {
-      this.messages.push(val)
+    notice (val) {
+      this.tip = val
+    },
+    userList (val) {
       console.log(val)
     }
   },
@@ -45,12 +52,9 @@ export default {
   },
   methods: {
     send (val) {
-      this.$socket.emit('test', val)
+      // this.$socket.emit('test', val)
+      // this.$socket.emit('private_message', val)
       this.val = ''
-      // this.$http.post('/api/user/addMessage', {
-      //   message: val,
-      //   name: this.info.name
-      // }, {}).then((response) => {})
     }
   }
 }
@@ -83,6 +87,17 @@ export default {
     }
     .info-icon {
       margin-right: 4%;
+    }
+  }
+  .tips {
+    margin-top: 20%;
+    text-align: center;
+    color: white;
+    span {
+      padding: 1%;
+      border-radius: 6px;
+      opacity: 0.6;
+      background: gray;
     }
   }
   .chat-container {

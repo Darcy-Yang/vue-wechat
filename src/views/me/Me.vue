@@ -26,6 +26,11 @@
 import Tabs from '@/components/footer/Tabs'
 import Search from '@/components/list/Search'
 
+import Vue from 'vue'
+import vueResource from 'vue-resource'
+
+Vue.use(vueResource)
+
 export default {
   name: 'Me',
   components: {
@@ -42,6 +47,13 @@ export default {
         { name: '表情' }
       ]
     }
+  },
+  sockets: {
+  },
+  created () {
+    this.$http.get('/api/user/get-user').then((response) => {
+      console.log(response.body)
+    })
   }
 }
 </script>

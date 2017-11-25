@@ -5,9 +5,15 @@ var io = require('socket.io')(server)
 const userApi = require('./api/userApi')
 const bodyParser = require('body-parser')
 
+var allSocket = []
+
 io.on('connection', function (socket) {
   console.log('a user connected!')
-  io.sockets.emit('send', 'hi~')
+  socket.on('login', function (username) {
+    socket.broadcast.emit('notice', `${username}上线啦`)
+    socket.emit('me', username)
+    allSocket[username] = socket
+  })
   socket.on('test', function (data) {
     socket.emit('message', data)
   })

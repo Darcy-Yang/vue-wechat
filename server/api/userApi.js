@@ -100,4 +100,31 @@ router.get('/getMaxId', (req, res) => {
   })
 })
 
+  // 添加当前用户接口；
+router.post('/current-user', (req, res) => {
+  var currentSql = $sql.user.current
+  var params = req.body
+  conn.query(currentSql, [params.name], function (err, result) {
+    if (err) {
+      console.log(err)
+    }
+    if (result) {
+      jsonWrite(res, result)
+    }
+  })
+})
+
+  // 获取当前用户接口；
+router.get('/get-user', (req, res) => {
+  var getCurrentSql = $sql.user.me
+  conn.query(getCurrentSql, function (err, result) {
+    if (err) {
+      console.log(err)
+    }
+    if (result) {
+      jsonWrite(res, result)
+    }
+  })
+})
+
 module.exports = router
