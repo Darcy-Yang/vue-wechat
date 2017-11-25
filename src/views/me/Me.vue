@@ -5,7 +5,7 @@
       <img :src="currentUser.avatar" alt="avatar"/>
       <div class="account">
         <span class="name">{{ currentUser.name }}</span></br>
-        <span class="num">微信号:{{ currentUser.socket_id }}</span>
+        <span class="num">微信号:&nbsp;{{ currentUser.socket_id }}</span>
       </div>
     </div>
     <div class="wallet">

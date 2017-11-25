@@ -156,4 +156,46 @@ router.post('/update-id', (req, res) => {
   })
 })
 
+  // 添加聊天记录接口；
+router.post('/add-chat-message', (req, res) => {
+  var sql = $sql.message.add
+  var params = req.body
+  conn.query(sql, [params.content, params.sender, params.name], function (err, result) {
+    if (err) {
+      console.log(err)
+    }
+    if (result) {
+      jsonWrite(res, result)
+    }
+  })
+})
+
+  // 获取聊天记录接口；
+router.post('/get-chat-message', (req, res) => {
+  var sql = $sql.message.get
+  var params = req.body
+  conn.query(sql, [params.sender], function (err, result) {
+    if (err) {
+      console.log(err)
+    }
+    if (result) {
+      jsonWrite(res, result)
+    }
+  })
+})
+
+  // 更新消息页面显示文字；
+router.post('/update-chat-page', (req, res) => {
+  var sql = $sql.message.display
+  var params = req.body
+  conn.query(sql, [params.update, params.sender, params.name], function (err, result) {
+    if (err) {
+      console.log(err)
+    }
+    if (result) {
+      jsonWrite(res, result)
+    }
+  })
+})
+
 module.exports = router

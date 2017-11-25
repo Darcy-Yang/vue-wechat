@@ -10,12 +10,12 @@
     </div>
     <div class="chat-container" v-for="item in messages">
       <li>
-        <span class="message">{{ item }}</span>
-      </li>
-    </div> 
-    <div v-for="item in friend_msg">
-      <li>
-        <span>{{ item }}</span>
+        <div class="right">
+          <span class="friend-message" v-if="item[0] === info.name">{{ item[1] }}</span>
+        </div>
+        <div class="left">
+          <span class="message" v-if="item[0] === currentUser.name">{{ item[1] }}</span>
+        </div>
       </li>
     </div>
     <div class="bottom">
@@ -39,7 +39,7 @@ export default {
       friend_msg: [],
       tip: '',
       info: [],
-      userList: ''
+      currentUser: []
     }
   },
   sockets: {
@@ -49,22 +49,34 @@ export default {
     notice (val) {
       this.tip = val
     },
-    userList (val) {
-      console.log(val)
-    },
     pmsg (val) {
-      this.friend_msg.push(val[2])
+      this.messages.push(val)
     }
   },
   created () {
     this.info = this.$route.params
-    console.log(this.$socket.id)
+    this.$http.post('/api/user/get-user', { socket_id: this.$socket.id }, {}).then((response) => {
+      this.currentUser = response.body[0]
+    })
   },
   methods: {
     send (val) {
-      this.$socket.emit('test', val)
+      this.$socket.emit('test', this.currentUser.name, val)
       // 私聊消息；
-      this.$socket.emit('private_message', 'daniel', this.info.name, val)
+      this.$socket.emit('private_message', this.currentUser.name, this.info.name, val)
+      // 增加聊天内容；
+      this.$http.post('/api/user/add-chat-message', {
+        content: this.val,
+        sender: this.currentUser.name,
+        name: this.info.name
+      }, {}).then((response) => {
+      })
+      // 更新消息页面展示；
+      this.$http.post('/api/user/update-chat-page', {
+        update: this.val,
+        sender: this.currentUser.name,
+        name: this.info.name
+      }, {}).then((response) => {})
       this.val = ''
     }
   }
@@ -73,7 +85,10 @@ export default {
 
 <style lang="less" scoped>
 .chat-window {
-  margin: -8px;
+  margin: 0px -8px;
+  margin-top: -33px;
+  min-height: 610px;
+  background: #ebebeb;
   .top-nav {
   display: flex;
   position: fixed;
@@ -112,16 +127,32 @@ export default {
     }
   }
   .chat-container {
-    display: flex;
-    justify-content: flex-end;
-    margin: 20% 4%;
+    margin: 24% 4%;
     word-wrap: wrap;
+    background: #ebebeb;
     li {
       list-style: none;
     }
+    .right {
+      display: flex;
+      justify-content: flex-start;
+    }
+    .left {
+      display: flex;
+      justify-content: flex-end;
+    }
     .message {
+      // margin-top: 4%;
+      margin-bottom: -36px;
       padding: 4px;
       background: #1deb27;
+      border-radius: 6px;
+    }
+    .friend-message {
+      // margin-top: 4%;
+      margin-bottom: -36px;
+      padding: 4px;
+      background: white;
       border-radius: 6px;
     }
   }
