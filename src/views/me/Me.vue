@@ -2,9 +2,9 @@
   <div class="me-main">
     <Search :showAdd="showStuff" :showSearch="showStuff"/>
     <div class="personal-info">
-      <img src="static/avatar/4.jpg" alt="avatar"/>
+      <img :src="currentUser.avatar" alt="avatar"/>
       <div class="account">
-        <span class="name">Daniel Yang</span></br>
+        <span class="name">{{ currentUser.name }}</span></br>
         <span class="num">微信号：xxxxxx</span>
       </div>
     </div>
@@ -45,14 +45,19 @@ export default {
         { name: '相册' },
         { name: '卡包' },
         { name: '表情' }
-      ]
+      ],
+      currentUser: []
     }
   },
   sockets: {
   },
   created () {
     this.$http.get('/api/user/get-user').then((response) => {
-      console.log(response.body)
+      if (response.body) {
+        this.$http.post('/api/user/get-current', { name: response.body[0].name },{}).then((response) => {
+          this.currentUser = response.body[0]
+        })
+      }
     })
   }
 }

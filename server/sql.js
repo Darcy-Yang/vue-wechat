@@ -5,7 +5,8 @@ var sqlMap = {
     addMessage: 'update user set message = ? where name = ?',
     max: 'select max(id) from user',
     current: 'insert into login(name) values (?)',
-    me: 'select * from login order by id desc limit 1'
+    me: 'select * from login order by id desc limit 1',
+    getCurrent: 'select * from user where name = ?'
   }
 }
 
