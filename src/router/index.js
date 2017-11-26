@@ -10,6 +10,8 @@ import Contact from '@/views/contact/Contact'
 import DataCard from '@/views/contact/DataCard'
 
 import Find from '@/views/find/Find'
+import Circle from '@/views/find/Circle'
+
 import Me from '@/views/me/Me'
 
 import AddFriend from '@/components/add/AddFriend'
@@ -42,6 +44,11 @@ export default new Router({
       path: '/find',
       name: 'Find',
       component: Find
+    },
+    {
+      path: '/circle',
+      name: 'Circle',
+      component: Circle
     },
     {
       path: '/me',
