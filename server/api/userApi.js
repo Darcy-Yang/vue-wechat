@@ -188,7 +188,7 @@ router.post('/get-chat-message', (req, res) => {
 router.post('/update-chat-page', (req, res) => {
   var sql = $sql.message.display
   var params = req.body
-  conn.query(sql, [params.update, params.sender, params.name], function (err, result) {
+  conn.query(sql, [params.update, params.room], function (err, result) {
     if (err) {
       console.log(err)
     }
@@ -198,4 +198,17 @@ router.post('/update-chat-page', (req, res) => {
   })
 })
 
+  // 获取对方发过来的消息接口；
+router.post('/get-friend-message', (req, res) => {
+  var sql = $sql.message.get_two
+  var params = req.body
+  conn.query(sql, [params.name], function (err, result) {
+    if (err) {
+      console.log(err)
+    }
+    if (result) {
+      jsonWrite(res, result)
+    }
+  })
+})
 module.exports = router

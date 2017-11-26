@@ -1,7 +1,7 @@
 <template>
   <div class="chat-main">
     <Search class="search"/>
-    <div class="list" v-for="item in messages" @click="chat(item)">
+    <div class="list" v-for="item in send_messages" @click="chat(item)">
       <img :src="item.avatar" alt="avatar"/>
       <div class="chat-text">
         <span class="name">{{ item.name }}</span>
@@ -28,13 +28,17 @@ export default {
   },
   data () {
     return {
-      messages: []
+      send_messages: [],
+      receive_messages: []
     }
   },
   created () {
     this.$http.post('/api/user/get-user', { socket_id: this.$socket.id }, {}).then((response) => {
       this.$http.post('/api/user/get-chat-message', { sender: response.body[0].name }, {}).then((res) => {
-        this.messages = res.body
+        this.send_messages = res.body
+      })
+      this.$http.post('/api/user/get-friend-message', { name: response.body[0].name }, {}).then((response) => {
+        this.receive_messages = response.body
       })
     })
   },

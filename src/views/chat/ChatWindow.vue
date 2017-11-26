@@ -10,11 +10,11 @@
     </div>
     <div class="chat-container" v-for="item in messages">
       <li>
-        <div class="right">
-          <span class="friend-message" v-if="item[0] === info.name">{{ item[1] }}</span>
+        <div class="right" v-if="item[0] === info.name">
+          <span class="friend-message">{{ item[1] }}</span>
         </div>
-        <div class="left">
-          <span class="message" v-if="item[0] === currentUser.name">{{ item[1] }}</span>
+        <div class="left" v-if="item[0] === currentUser.name">
+          <span class="message">{{ item[1] }}</span>
         </div>
       </li>
     </div>
@@ -74,8 +74,7 @@ export default {
       // 更新消息页面展示；
       this.$http.post('/api/user/update-chat-page', {
         update: this.val,
-        sender: this.currentUser.name,
-        name: this.info.name
+        room: 1
       }, {}).then((response) => {})
       this.val = ''
     }

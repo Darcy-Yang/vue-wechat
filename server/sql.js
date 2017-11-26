@@ -11,7 +11,8 @@ var sqlMap = {
   message: {
     add: 'update message set content=CONCAT_WS(",",content,?) where sender = ? and name = ?',
     get: 'select * from message where sender = ?',
-    display: 'update message set display_content = ? where sender = ? and name = ?'
+    display: 'update message set display_content = ? where room = ?',
+    get_two: 'select * from message where name = ?'
   }
 }
 
