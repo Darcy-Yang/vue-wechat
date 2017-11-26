@@ -37,9 +37,9 @@ export default {
       this.$http.post('/api/user/get-chat-message', { sender: response.body[0].name }, {}).then((res) => {
         this.send_messages = res.body
       })
-      this.$http.post('/api/user/get-friend-message', { name: response.body[0].name }, {}).then((response) => {
-        this.receive_messages = response.body
-      })
+      // this.$http.post('/api/user/get-friend-message', { name: response.body[0].name }, {}).then((response) => {
+      //   this.receive_messages = response.body
+      // })
     })
   },
   methods: {

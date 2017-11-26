@@ -11,6 +11,7 @@ io.on('connection', function (socket) {
   console.log('a user connected!')
   socket.on('login', function (username) {
     socket.broadcast.emit('notice', `${username}上线啦`)
+    socket.join('chat-room')
     socket.emit('me', username)
     allSocket[username] = socket
     socket.emit('socketId', [allSocket[username].id, username])

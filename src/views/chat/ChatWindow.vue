@@ -35,7 +35,12 @@ export default {
   data () {
     return {
       val: '',
-      messages: [],
+      messages: [
+        [ 'daniel', '在吗' ],
+        [ 'joey', '干嘛' ],
+        [ 'daniel', '来啊，快活啊' ],
+        [ 'joey', '好的，你在哪，我马上就来' ]
+      ],
       friend_msg: [],
       tip: '',
       info: [],
@@ -64,14 +69,7 @@ export default {
       this.$socket.emit('test', this.currentUser.name, val)
       // 私聊消息；
       this.$socket.emit('private_message', this.currentUser.name, this.info.name, val)
-      // 增加聊天内容；
-      this.$http.post('/api/user/add-chat-message', {
-        content: this.val,
-        sender: this.currentUser.name,
-        name: this.info.name
-      }, {}).then((response) => {
-      })
-      // 更新消息页面展示；
+      // 更新消息页面展示
       this.$http.post('/api/user/update-chat-page', {
         update: this.val,
         room: 1

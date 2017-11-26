@@ -9,10 +9,10 @@ var sqlMap = {
     getCurrent: 'select * from user where name = ?'
   },
   message: {
-    add: 'update message set content=CONCAT_WS(",",content,?) where sender = ? and name = ?',
+    add: 'update message set content= ? where room = ?',
     get: 'select * from message where sender = ?',
     display: 'update message set display_content = ? where room = ?',
-    get_two: 'select * from message where name = ?'
+    get_all: 'select * from message where room = ?'
   }
 }
 

@@ -160,7 +160,7 @@ router.post('/update-id', (req, res) => {
 router.post('/add-chat-message', (req, res) => {
   var sql = $sql.message.add
   var params = req.body
-  conn.query(sql, [params.content, params.sender, params.name], function (err, result) {
+  conn.query(sql, [params.content, params.room], function (err, result) {
     if (err) {
       console.log(err)
     }
@@ -198,11 +198,11 @@ router.post('/update-chat-page', (req, res) => {
   })
 })
 
-  // 获取对方发过来的消息接口；
-router.post('/get-friend-message', (req, res) => {
-  var sql = $sql.message.get_two
+  // 获取全部消息接口；
+router.post('/get-all-message', (req, res) => {
+  var sql = $sql.message.get_all
   var params = req.body
-  conn.query(sql, [params.name], function (err, result) {
+  conn.query(sql, [params.room], function (err, result) {
     if (err) {
       console.log(err)
     }
