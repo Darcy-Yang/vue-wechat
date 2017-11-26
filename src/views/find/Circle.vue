@@ -3,7 +3,7 @@
     <div class="top">
       <span class="back">< 发现</span>
       <span class="tip">朋友圈</span>
-      <span class="publish">发布</span>
+      <router-link class="publish" to="/publish">发布</router-link>
     </div>
     <div class="cover">
       <img class="cover-img" src="static/avatar/3.jpg" alt="cover"/>
@@ -44,6 +44,8 @@ export default {
     }
     .publish {
       margin-right: 5%;
+      color: white;
+      text-decoration: none;
     }
   }
   .cover {

@@ -11,6 +11,7 @@ import DataCard from '@/views/contact/DataCard'
 
 import Find from '@/views/find/Find'
 import Circle from '@/views/find/Circle'
+import Publish from '@/views/find/Publish'
 
 import Me from '@/views/me/Me'
 
@@ -49,6 +50,11 @@ export default new Router({
       path: '/circle',
       name: 'Circle',
       component: Circle
+    },
+    {
+      path: '/publish',
+      name: 'Publish',
+      component: Publish
     },
     {
       path: '/me',
