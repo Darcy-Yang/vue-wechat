@@ -13,6 +13,10 @@ var sqlMap = {
     get: 'select * from message where sender = ?',
     display: 'update message set display_content = ? where room = ?',
     get_all: 'select * from message where room = ?'
+  },
+  publish: {
+    add: 'insert into publish(author, avatar, content, pictures, date, location) values (?,?,?,?,?,?)',
+    max: 'select max(id) from publish'
   }
 }
 

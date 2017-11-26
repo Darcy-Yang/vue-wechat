@@ -8,8 +8,17 @@
     <div class="cover">
       <img class="cover-img" src="static/avatar/3.jpg" alt="cover"/>
       <div class="personal-info">
+        <span class="name">{{ currentUser.name }}</span>
+        <img class="avatar" :src="currentUser.avatar" alt="avatar"/>
+      </div>
+    </div>
+    <div class="content">
+      <img class="avatars" src="static/avatar/3.jpg" alt="avatar"/>
+      <div class="describe">
         <span class="name">name</span>
-        <img class="avatar" src="static/avatar/4.jpg" alt="avatar"/>
+        <span>jdssdfndndjfnjksdfnkjnsdfjknjsdkfnjsndfjnjsdfnjdnsfknsdfknsdfk</span>
+        <img class="pictures" src="static/publish/1.jpg" alt="pictures"/></br>
+        <span class="date">12:00</span>
       </div>
     </div>
   </div>
@@ -17,7 +26,17 @@
 
 <script>
 export default {
-  name: 'Cricle'
+  name: 'Cricle',
+  data () {
+    return {
+      currentUser: []
+    }
+  },
+  created () {
+    this.$http.post('/api/user/get-user', { socket_id: this.$socket.id }, {}).then((response) => {
+      this.currentUser = response.body[0]
+    })
+  }
 }
 </script>
 
@@ -66,12 +85,43 @@ export default {
       .name {
         position: relative;
         top: -48px;
-        right: 16px;
+        right: 6px;
         font-size: 18px;
         font-weight: bold;
         color: white;
         letter-spacing: 1.2px;
       }
+    }
+  }
+  .content {
+    display: flex;
+    margin-top: 48px;
+    padding-bottom: 2%;
+    width: 102%;
+    border-bottom: 0.1px solid gray;
+    .avatars {
+      margin-left: 2%;
+      width: 50px;
+      height: 50px;
+    }
+    .name {
+      color: #3557e3;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .describe {
+      margin-left: 2%;
+      width: 74%;
+      font-size: 16px;
+      word-wrap: break-word;
+    }
+    .pictures {
+      width: 120px;
+      height: 120px;
+    }
+    .date {
+      // position: relative;
+      // left: 0px;
     }
   }
 }

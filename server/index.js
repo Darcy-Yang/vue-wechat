@@ -3,6 +3,7 @@ var server = require('http').Server(app)
 var io = require('socket.io')(server)
 
 const userApi = require('./api/userApi')
+const publishApi = require('./api/publishApi')
 const bodyParser = require('body-parser')
 
 var allSocket = []
@@ -37,6 +38,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
   // 后端api路由；
 app.use('/api/user', userApi)
+app.use('/api/publish', publishApi)
 
 server.listen(3000, function () {
   console.log('server listen at port: 3000')
